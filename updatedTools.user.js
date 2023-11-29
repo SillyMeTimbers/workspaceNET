@@ -31,7 +31,7 @@
         if (BaseURL == "https://uhaul.net/tools/") {
             const ToolsBar = $("#MainBodyPlaceHolder_ToolsMenuDiv")
 
-            if (ToolsBar.attr("updated") !== true) {
+            if (!ToolsBar.attr("updated")) {
                 ToolsBar.attr("updated", true)
 
                 ToolsBar.find("> div").each(function(index, element){
@@ -44,13 +44,13 @@
                         const newItem = $(`
                         <div class="columns large-12" style="white-space: nowrap; padding: 0.5em 0.5em;">
                             <div class="toolsNew">
-                                <a href="${redirectLink}">
+                                <a href="${redirectLink}" style="text-decoration: none;">
                                     <img src="${image}" alt="" border="0" align="middle" height="34" width="35">
                                 </a>
     
                                 &nbsp;&nbsp;
     
-                                <a href="${redirectLink}">${text}</a>
+                                <a href="${redirectLink}" style="text-decoration: underline;">${text}</a>
                             </div>
                         </div>
                         `)
