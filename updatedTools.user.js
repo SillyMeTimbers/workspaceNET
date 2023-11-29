@@ -25,41 +25,43 @@
 	`;
     injectCSS(CSSToInject);
 
-    let wasUpdated = false
     function Execute() {
         const BaseURL = window.location.href
 
-        if (BaseURL == "https://uhaul.net/tools/" && wasUpdated == false) {
-            wasUpdated = true
+        if (BaseURL == "https://uhaul.net/tools/") {
             const ToolsBar = $("#MainBodyPlaceHolder_ToolsMenuDiv")
 
-            ToolsBar.find("> div").each(function(index, element){
-                $(element).find("> div").each(function(index2, item) {
-                    const oldItem = $(item)
-                    const redirectLink = oldItem.find("a").attr('href');
-                    const image = oldItem.find("img").attr('src');
-                    const text = oldItem.find("a:nth-child(2)").text()
+            if (ToolsBar.attr("updated") !== true) {
+                ToolsBar.attr("updated", true)
 
-                    const newItem = $(`
-                    <div class="columns large-12" style="white-space: nowrap; padding: 0.5em 0.5em;">
-                        <div class="toolsNew">
-                            <a href="${redirectLink}">
-                                <img src="${image}" alt="" border="0" align="middle" height="34" width="35">
-                            </a>
-
-                            &nbsp;&nbsp;
-
-                            <a href="${redirectLink}">${text}</a>
+                ToolsBar.find("> div").each(function(index, element){
+                    $(element).find("> div").each(function(index2, item) {
+                        const oldItem = $(item)
+                        const redirectLink = oldItem.find("a").attr('href');
+                        const image = oldItem.find("img").attr('src');
+                        const text = oldItem.find("a:nth-child(2)").text()
+    
+                        const newItem = $(`
+                        <div class="columns large-12" style="white-space: nowrap; padding: 0.5em 0.5em;">
+                            <div class="toolsNew">
+                                <a href="${redirectLink}">
+                                    <img src="${image}" alt="" border="0" align="middle" height="34" width="35">
+                                </a>
+    
+                                &nbsp;&nbsp;
+    
+                                <a href="${redirectLink}">${text}</a>
+                            </div>
                         </div>
-                    </div>
-                    `)
-
-                    oldItem.hide()
-                    newItem.show()
-
-                    $(element).append(newItem)
+                        `)
+    
+                        oldItem.hide()
+                        newItem.show()
+    
+                        $(element).append(newItem)
+                    })
                 })
-            })
+            }
         }
     }
 
