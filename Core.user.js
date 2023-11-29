@@ -8,7 +8,7 @@
 // ==/UserScript==
 
 const Redirects = [
-    "autoUbxEmail",
+    "updatedTools",
 ];
 
 (async function() {
